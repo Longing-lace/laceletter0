@@ -206,7 +206,7 @@ body {
         #send-btn { background-color: var(--accent-color); height: 40px; padding: 0 15px;}
         .modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); display: none; justify-content: center; align-items: center; z-index: 100; }
         .modal.visible { display: flex; }
-        .modal-content { width: 90%; max-height: 90%; background-color: white; border-radius: 15px; display: flex; flex-direction: column; }
+        .modal-content { width: 90%; max-height: 90%; background-color: white; border-radius: 15px; display: flex; flex-direction: column;position: relative; }
         .modal-header { padding: 15px; font-weight: 600; border-bottom: 1px solid var(--border-color); text-align: center; display: flex; justify-content: space-between; align-items: center; }
         .modal-body { padding: 15px; overflow-y: auto; }
         .modal-footer { padding: 15px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; }
@@ -4306,6 +4306,77 @@ input:checked + .slider:before {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* ▼▼▼ 在这里粘贴日记和心声的CSS样式 ▼▼▼ */
+
+/* === 日记卡片样式 === */
+
+/* ▼▼▼ 在这里粘贴新按钮的CSS ▼▼▼ */
+/* === 心声弹窗里的日记快捷按钮 === */
+.diary-shortcut-btn {
+    position: absolute;
+    bottom: 80px;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+.diary-shortcut-btn:hover {
+    opacity: 1;
+}
+/* ▲▲▲ 粘贴结束 ▲▲▲ */
+.diary-card {
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-left: none; /* 去掉左侧边框 */
+}
+#phone-screen.dark-mode .diary-card {
+    background-color: #1c1c1e;
+    border-left-color: #E6A753;
+}
+
+.diary-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+.diary-card .card-header .actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 5px;
+}
+
+.diary-card .card-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+}
+
+/* ▼▼▼ 在这里粘贴新代码 ▼▼▼ */
+/* === 日记页面背景色 === */
+#diary-screen, #diary-list {
+    background-color: #ffffff;
+}
+#phone-screen.dark-mode #diary-screen,
+#phone-screen.dark-mode #diary-list {
+    background-color: #1c1c1e; /* 夜间模式用深灰色背景 */
+}
+/* ▲▲▲ 粘贴结束 ▲▲▲ */
+
+/* ▲▲▲ CSS样式粘贴结束 ▲▲▲ */
     </style>
 </head>
 <body>
@@ -4637,6 +4708,11 @@ input:checked + .slider:before {
             <!-- ▲▲▲ 新增结束 ▲▲▲ -->
 
             <div class="header-actions">
+                <span class="action-btn" id="show-status-diary-btn" title="状态与日记">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"/>
+    </svg>
+</span>
                 <span class="action-btn" id="listen-together-btn" title="一起听"><img src="https://i.postimg.cc/dV8sdNcx/210-20250618115221.png" alt="一起听"></span>
                 <span class="action-btn" id="chat-settings-btn" title="聊天设置"><img src="https://i.postimg.cc/bvPq64cv/CCA834-BA-5-A90-408-D-94-FA-7-EE156-B6-A765.png" alt="设置"></span>
             </div>
@@ -4935,11 +5011,69 @@ input:checked + .slider:before {
         <button id="user-speak-btn" class="control-btn speak-btn"></button>
         <button id="hang-up-btn" class="control-btn hangup-btn"></button>
         <!-- 这个按钮默认隐藏，只在用户“旁观”时显示 -->
+         
         <button id="join-call-btn" class="control-btn join-btn" style="display: none;"></button>
     </div>
 </div>
 <!-- ▲▲▲ 替换结束 ▲▲▲ -->
+<div id="status-modal" class="modal">
+    <div class="modal-content" style="width: 290px; height: auto;">
+        <div class="modal-header">
+            <span id="status-modal-title">TA的状态</span>
+        </div>
+        <div class="modal-body" style="text-align: left;">
+            
+            <div>
+                
+                <p id="status-modal-thought" style="font-size: 16px; line-height: 1.6;">...</p>
+            </div>
+        </div>
+        <button id="open-diary-from-status-btn" class="diary-shortcut-btn" title="打开日记本">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M8,12H16V14H8V12M8,16H13V18H8V16Z" />
+    </svg>
+</button>
+        <div class="modal-footer">
+            <button class="save" onclick="document.getElementById('status-modal').classList.remove('visible')" style="width:100%;">关闭</button>
+        </div>
+    </div>
+</div>
 
+<div id="diary-screen" class="screen">
+    <div class="header">
+        <span class="back-btn" id="diary-back-btn">‹</span>
+        <span id="diary-screen-title">TA的日记</span>
+        <span style="width: 30px;"></span>
+    </div>
+    <div id="diary-list" class="list-container" style="padding: 15px; display: flex; flex-direction: column; gap: 15px;">
+        </div>
+</div>
+
+<div id="edit-diary-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header"><span>编辑日记</span></div>
+        <div class="modal-body">
+            <div class="form-group">
+                <textarea id="diary-text-input" rows="5" placeholder="记录下此刻的心情吧..." maxlength="150"></textarea>
+                <div style="text-align: right; font-size: 12px; color: #888; margin-top: 5px;" id="diary-char-counter">0 / 150</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="cancel" id="cancel-diary-edit-btn">取消</button>
+            <button class="save" id="save-diary-edit-btn">保存修改</button>
+        </div>
+    </div>
+</div>
+
+<div id="status-diary-action-modal" class="modal">
+    <div id="custom-modal" style="width: 250px;">
+        <div class="custom-modal-footer">
+            <button id="action-show-status">查看心声</button>
+            <button id="action-show-diary">打开日记本</button>
+            <button id="action-cancel-selection" style="margin-top: 8px; border-radius: 8px; background-color: #f0f0f0;">取消</button>
+        </div>
+    </div>
+</div>
 <!-- ▼▼▼ 【全新添加】正在呼叫界面 ▼▼▼ -->
 <div id="outgoing-call-screen" class="screen">
     <div class="outgoing-call-content">
@@ -6721,6 +6855,24 @@ async function loadAllDataFromDB() {
     // ▲▲▲ 添加结束 ▲▲▲
 
         if (!chat.musicData) chat.musicData = { totalTime: 0 };
+        // ▼▼▼ 在这里粘贴 ▼▼▼
+// 为旧角色兼容日记和心声功能
+if (!chat.diary) {
+    chat.diary = [];
+}
+if (!chat.displayStatus) {
+    chat.displayStatus = {
+        statusText: chat.status?.text || '在线',
+        innerThought: '...'
+    };
+}
+if (!chat.statusHistory) {
+    chat.statusHistory = [];
+}
+if (!chat.thoughtHistory) {
+    chat.thoughtHistory = [];
+}
+// ▲▲▲ 粘贴结束 ▲▲▲
         if (chat.settings && chat.settings.linkedWorldBookId && !chat.settings.linkedWorldBookIds) {
             chat.settings.linkedWorldBookIds = [chat.settings.linkedWorldBookId];
             delete chat.settings.linkedWorldBookId;
@@ -7018,14 +7170,13 @@ function renderChatInterface(chatId) {
     const statusTextEl = statusContainer.querySelector('.status-text');
 
     if (chat.isGroup) {
-        statusContainer.style.display = 'none';
-        document.getElementById('chat-header-title-wrapper').style.justifyContent = 'center';
-    } else {
-        statusContainer.style.display = 'flex';
-        document.getElementById('chat-header-title-wrapper').style.justifyContent = 'flex-start';
-        statusTextEl.textContent = chat.status?.text || '在线';
-        statusContainer.classList.toggle('busy', chat.status?.isBusy || false);
-    }
+    statusContainer.style.display = 'none';
+    document.getElementById('chat-header-title-wrapper').style.justifyContent = 'center';
+} else {
+    statusContainer.style.display = 'flex';
+    document.getElementById('chat-header-title-wrapper').style.justifyContent = 'flex-start';
+    updateChatHeaderStatus(); // 直接调用我们的新工具
+}
     
     lockOverlay.style.display = 'none';
     chatInputArea.style.visibility = 'visible';
@@ -8141,7 +8292,7 @@ ${chat.settings.aiAvatarLibrary && chat.settings.aiAvatarLibrary.length > 0
 -   **【新增】切换歌曲**: \`{"type": "change_music", "song_name": "你想切换到的歌曲名"}\` (歌曲名必须在下面的播放列表中)
 -   **【新增】记录回忆**: \`{"type": "create_memory", "description": "用你自己的话，记录下这个让你印象深刻的瞬间。"}\`
 -   **【新增】创建约定/倒计时**: \`{"type": "create_countdown", "title": "约定的标题", "date": "YYYY-MM-DDTHH:mm:ss"}\` (必须是未来的时间)
-- **发送文本**: \`{"type": "text", "content": "你好呀！"}\`
+- **发送文本**: \`{"type": "text", "content": "你好呀！","thought": "在这里写下你此刻的内心独白"}\`。**你发送的每一轮文本消息都必须包含一次thought字段**。
 - **发送表情**: \`{"type": "sticker", "url": "https://...表情URL...", "meaning": "(可选)表情的含义"}\`
 - **发送图片**: \`{"type": "ai_image", "description": "图片的详细文字描述..."}\`
 - **发送语音**: \`{"type": "voice_message", "content": "语音的文字内容..."}\`
@@ -8185,7 +8336,11 @@ ${chat.settings.aiAvatarLibrary && chat.settings.aiAvatarLibrary.length > 0
     -   如果决定接受，你【必须】使用指令：\`{"type": "accept_transfer", "for_timestamp": (收到转账的那条消息的时间戳)}\`。
     -   如果决定拒绝，你【必须】使用指令：\`{"type": "decline_transfer", "for_timestamp": (收到转账的那条消息的时间戳)}\`。这个指令会自动为你生成一个“退款”的转账卡片。
 4.  **【【【至关重要】】】**: 在使用上述任一指令后，你还【必须】紧接着发送一条或多条 \`text\` 消息，来对你的决定进行解释或表达感谢/歉意。
-
+// ▼▼▼ 在这里粘贴 ▼▼▼
+5.  **【重要】写日记**: 当对话中发生了让你觉得特别难忘、想要珍藏的时刻，你可以决定写一篇日记。日记必须是你内心真实的想法，且是你站在自己角色的第一人称视角写的。
+    -   **写日记指令**: \`{"type": "create_diary", "content": "日记内容，不超过150字"}\`
+    -   **说明**: 这条指令本身不会显示为聊天消息，但会触发日记记录。请在角色有所感触、情绪激动、或觉得当前事件重要时才记录，大部分时间不需要写日记。
+// ▲▲▲ 粘贴结束 ▲▲▲
 # 【【【视频通话铁律】】】
 -   当对话历史中出现 \`[系统提示：用户向你发起了视频通话请求...]\` 时，这是最高优先级的任务。
 -   你的回复【必须且只能】是以下两种格式之一的JSON数组，绝对不能回复任何其他内容：
@@ -8442,7 +8597,26 @@ if (chat.isGroup && !msgData.name) {
                         originalMsg.paidBy = msgData.status === 'paid' ? msgData.name : null;
                     }
                     continue;
+// ▼▼▼ 在这里粘贴 ▼▼▼
 
+
+case 'create_diary':
+    if (msgData.content) {
+        const newDiaryEntry = {
+            id: `diary_${Date.now()}`,
+            timestamp: Date.now(),
+            content: msgData.content
+        };
+        if (!chat.diary) chat.diary = [];
+        chat.diary.push(newDiaryEntry);
+        
+        // 如果用户正在和这个AI聊天，就弹出一个提示
+        if (isViewingThisChat) {
+            showCustomAlert('提示', `“${chat.name}”似乎有什么心事，悄悄写下了一页日记...`);
+        }
+    }
+    continue; // 处理完日记后，继续处理下一条AI消息
+// ▲▲▲ 粘贴结束 ▲▲▲
 case 'qzone_post':
     const newPost = { 
         type: msgData.postType, 
@@ -8540,6 +8714,7 @@ case 'qzone_post':
                     chat.status.text = msgData.status_text;
                     chat.status.isBusy = msgData.is_busy || false;
                     chat.status.lastUpdate = Date.now();
+                    chat.displayStatus.statusText = msgData.status_text; // <-- 新增这行，同步状态到心声档案
                     
                     const statusUpdateMessage = {
                         role: 'system',
@@ -8551,6 +8726,7 @@ case 'qzone_post':
 
                     if (isViewingThisChat) {
                         appendMessage(statusUpdateMessage, chat);
+                        updateChatHeaderStatus();
                     }
                     
                     renderChatList(); 
@@ -8953,7 +9129,18 @@ case 'send_and_recall': {
 // ▲▲▲ 新 case 添加结束 ▲▲▲
                 
                 case 'text':
-                    aiMessage = { ...baseMessage, content: String(msgData.content || msgData.message) };
+                    // ▼▼▼ 用下面这段代码替换旧的 case 'text' ▼▼▼
+case 'text':
+    // 检查AI的这条消息里是否附带了内心独白
+    if (msgData.thought && chat.displayStatus) {
+        // 如果有，就更新角色的心声数据
+        chat.displayStatus.innerThought = msgData.thought;
+        chat.thoughtHistory.push({ text: msgData.thought, timestamp: Date.now() });
+    }
+    // 创建要显示在聊天界面的消息（只显示content部分）
+    aiMessage = { ...baseMessage, content: String(msgData.content || msgData.message) };
+    break;
+// ▲▲▲ 替换结束 ▲▲▲
                     break;
                 case 'sticker':
                     aiMessage = { ...baseMessage, type: 'sticker', content: msgData.url, meaning: msgData.meaning || '' };
@@ -10720,9 +10907,7 @@ function startWaimaiCountdown(element, endTime) {
     }, 1000);
     return timerId;
 }
-/**
- * 【增强版】处理重新生成AI回复的请求，删除AI的整个最后一轮回复
- */
+// ▼▼▼ 请用下面这个【完整】的函数，替换掉旧的 handleRegenerateResponse 函数 ▼▼▼
 async function handleRegenerateResponse() {
     if (!state.activeChatId) return;
     const chatId = state.activeChatId;
@@ -10736,21 +10921,22 @@ async function handleRegenerateResponse() {
         return;
     }
 
-    // 2. 检查最后一条可见消息是否是AI的回复
-    if (chat.history[lastVisibleMessageIndex].role !== 'assistant') {
-        alert("最后一条消息不是AI的回复，无法重新生成。");
+    // 2. 检查最后一条消息是否是用户发的，如果是，则不能重新生成
+    if (chat.history[lastVisibleMessageIndex].role === 'user') {
+        alert("最后一条消息是您的回复，无法重新生成。");
         return;
     }
 
-    // 3. 从最后一条AI回复开始，向前查找这一轮回话的起点
+    // 3. 从最后一条消息开始，向前查找AI整个回合的起点
     let turnStartIndex = lastVisibleMessageIndex;
     for (let i = lastVisibleMessageIndex - 1; i >= 0; i--) {
         const currentMsg = chat.history[i];
-        // 如果还是AI的消息，就继续更新起点
-        if (currentMsg.role === 'assistant') {
-            turnStartIndex = i;
+        
+        // 【核心修正】只要消息不是用户发的，就都认为是AI的回复部分
+        if (currentMsg.role === 'assistant' || currentMsg.role === 'system') {
+            turnStartIndex = i; // 继续更新起点
         } else {
-            // 一旦遇到不是AI的消息（比如用户的回复或系统消息），就停止查找
+            // 一旦遇到用户的消息，就立刻停止查找
             break;
         }
     }
@@ -10767,6 +10953,7 @@ async function handleRegenerateResponse() {
     // 7. 触发AI重新生成回复
     triggerAiResponse();
 }
+// ▲▲▲ 替换结束 ▲▲▲
 
 function cleanupWaimaiTimers() {
     for (const timestamp in waimaiTimers) {
@@ -12747,6 +12934,7 @@ async function handleEditStatusClick() {
         chat.status.text = newStatusText.trim() || '在线'; // 如果用户清空了，就默认为“在线”
         chat.status.isBusy = false; // 每次手动编辑都默认其不处于“忙碌”状态
         chat.status.lastUpdate = Date.now();
+        chat.displayStatus.statusText = msgData.status_text;
         await db.chats.put(chat);
 
         // 5. 立刻刷新UI，让用户看到修改后的状态
@@ -13041,6 +13229,22 @@ async function deleteCategory(categoryId) {
         // ===================================================================
         // 4. 初始化函数 init()
         // ===================================================================
+        /**
+ * 【全新】专门更新聊天界面顶部的状态栏
+ */
+function updateChatHeaderStatus() {
+    if (!state.activeChatId) return; // 如果没有打开任何聊天，则不执行
+    const chat = state.chats[state.activeChatId];
+    if (!chat || chat.isGroup) return; // 如果找不到聊天或者当前是群聊，则不执行
+
+    // 找到状态栏相关的元素
+    const statusContainer = document.getElementById('chat-header-status');
+    const statusTextEl = statusContainer.querySelector('.status-text');
+
+    // 更新状态文本和“忙碌”样式
+    statusTextEl.textContent = chat.status?.text || '在线';
+    statusContainer.classList.toggle('busy', chat.status?.isBusy || false);
+}
         async function init() {
 
     // ▼▼▼ 在 init() 函数的【最开头】，粘贴下面这两行代码 ▼▼▼
@@ -13139,6 +13343,16 @@ const newChat = {
     }, 
     history: [], 
     musicData: { totalTime: 0 } 
+    , // <--- 别忘了这个逗号！
+// ▼▼▼ 在这里粘贴 ▼▼▼
+diary: [],
+displayStatus: {
+    statusText: '在线',
+    innerThought: '开始一段新的对话吧...'
+},
+statusHistory: [],
+thoughtHistory: []
+// ▲▲▲ 粘贴结束 ▲▲▲
 };
 state.chats[newChatId] = newChat; await db.chats.put(newChat); renderChatList(); } });
 
@@ -15474,10 +15688,202 @@ document.getElementById('existing-categories-list').addEventListener('click', (e
 
         // ===================================================================
         // 5. 启动！
-            
+            // ▼▼▼ 在这里粘贴 ▼▼▼
+setupStatusAndDiarySystem();
+// ▼▼▼ 在函数末尾粘贴这段新代码 ▼▼▼
+// 为心声弹窗里的日记按钮添加点击事件
+document.getElementById('open-diary-from-status-btn').addEventListener('click', () => {
+    document.getElementById('status-modal').classList.remove('visible'); // 先关闭心声弹窗
+    openDiaryScreen(state.activeChatId); // 然后打开日记本
+});
+// ▲▲▲ 粘贴结束 ▲▲▲
+// ▲▲▲ 粘贴结束 ▲▲▲
             showScreen('home-screen');
         }
+// ▼▼▼ 在这里粘贴日记和心声的全部功能代码 ▼▼▼
 
+let currentDiaryCharacterId = null; // 用于记录当前正在查看哪个角色的日记
+
+/**
+ * 设置所有与日记和心声相关的事件监听
+ */
+function setupStatusAndDiarySystem() {
+    // ▼▼▼ 用下面这段代码替换原来的爱心按钮功能 ▼▼▼
+// 爱心按钮：现在直接打开心声弹窗
+document.getElementById('show-status-diary-btn').addEventListener('click', () => {
+    if (!state.activeChatId || state.chats[state.activeChatId].isGroup) {
+        alert("此功能仅限单人聊天使用。");
+        return;
+    }
+    openStatusModal(); // 直接调用打开心声弹窗的函数
+});
+// ▲▲▲ 替换结束 ▲▲▲
+
+    // 功能选择菜单的按钮
+    document.getElementById('action-cancel-selection').addEventListener('click', () => {
+        document.getElementById('status-diary-action-modal').classList.remove('visible');
+    });
+    document.getElementById('action-show-status').addEventListener('click', () => {
+        document.getElementById('status-diary-action-modal').classList.remove('visible');
+        openStatusModal();
+    });
+    document.getElementById('action-show-diary').addEventListener('click', () => {
+        document.getElementById('status-diary-action-modal').classList.remove('visible');
+        openDiaryScreen(state.activeChatId);
+    });
+
+    // 日记本界面的返回按钮
+    document.getElementById('diary-back-btn').addEventListener('click', () => {
+        showScreen('chat-interface-screen');
+    });
+    
+    // 日记编辑模态框的按钮
+    document.getElementById('cancel-diary-edit-btn').addEventListener('click', () => {
+        document.getElementById('edit-diary-modal').classList.remove('visible');
+    });
+    document.getElementById('save-diary-edit-btn').addEventListener('click', saveDiaryEdit);
+
+    // 日记列表的事件委托，处理编辑和删除
+    document.getElementById('diary-list').addEventListener('click', (e) => {
+        const editBtn = e.target.closest('.diary-edit-btn');
+        const deleteBtn = e.target.closest('.diary-delete-btn');
+        if (editBtn) {
+            openDiaryEditModal(editBtn.dataset.id);
+        }
+        if (deleteBtn) {
+            deleteDiaryEntry(deleteBtn.dataset.id);
+        }
+    });
+
+    // 监听日记编辑框的输入，更新字数统计
+    const diaryTextInput = document.getElementById('diary-text-input');
+    const diaryCharCounter = document.getElementById('diary-char-counter');
+    diaryTextInput.addEventListener('input', () => {
+        const count = diaryTextInput.value.length;
+        diaryCharCounter.textContent = `${count} / 150`;
+    });
+}
+
+/**
+ * 打开并填充“心声”弹窗
+ */
+function openStatusModal() {
+    const chat = state.chats[state.activeChatId];
+    if (!chat) return;
+    document.getElementById('status-modal-title').textContent = `心声`;
+    document.getElementById('status-modal-thought').textContent = chat.displayStatus?.innerThought || '...';
+    document.getElementById('status-modal').classList.add('visible');
+}
+
+/**
+ * 打开指定角色的日记本界面
+ * @param {string} characterId - 角色的ID
+ */
+function openDiaryScreen(characterId) {
+    currentDiaryCharacterId = characterId;
+    const character = state.chats[characterId];
+    if (!character) return;
+    document.getElementById('diary-screen-title').textContent = `${character.name}的日记`;
+    renderDiaryList();
+    showScreen('diary-screen');
+}
+
+/**
+ * 渲染日记列表
+ */
+function renderDiaryList() {
+    const character = state.chats[currentDiaryCharacterId];
+    const container = document.getElementById('diary-list');
+    container.innerHTML = '';
+    
+    if (!character || !character.diary || character.diary.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color: var(--text-secondary); margin-top: 50px;">日记本还是空的呢...</p>';
+        return;
+    }
+
+    // 日记倒序显示，最新的在最上面
+    [...character.diary].reverse().forEach(entry => {
+        const card = document.createElement('div');
+        card.className = 'diary-card';
+        const date = new Date(entry.timestamp);
+        const dateString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        
+        card.innerHTML = `
+            <div class="card-header">
+                <span class="date">${dateString}</span>
+                <div class="actions">
+                    <button class="diary-edit-btn" data-id="${entry.id}" title="编辑">✏️</button>
+                    <button class="diary-delete-btn" data-id="${entry.id}" title="删除">🗑️</button>
+                </div>
+            </div>
+            <div class="card-body">${entry.content}</div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+/**
+ * 打开日记编辑弹窗
+ * @param {string} diaryId - 要编辑的日记的ID
+ */
+function openDiaryEditModal(diaryId) {
+    const character = state.chats[currentDiaryCharacterId];
+    const entry = character.diary.find(d => d.id === diaryId);
+    if (!entry) return;
+
+    const modal = document.getElementById('edit-diary-modal');
+    modal.dataset.editingId = entry.id; // 将ID存在modal上
+    const textInput = document.getElementById('diary-text-input');
+    textInput.value = entry.content;
+    document.getElementById('diary-char-counter').textContent = `${entry.content.length} / 150`;
+    modal.classList.add('visible');
+}
+
+/**
+ * 保存对日记的修改
+ */
+async function saveDiaryEdit() {
+    const modal = document.getElementById('edit-diary-modal');
+    const diaryId = modal.dataset.editingId;
+    const newContent = document.getElementById('diary-text-input').value.trim();
+
+    if (!newContent) {
+        alert('日记内容不能为空哦。');
+        return;
+    }
+
+    const character = state.chats[currentDiaryCharacterId];
+    const entryIndex = character.diary.findIndex(d => d.id === diaryId);
+
+    if (entryIndex > -1) {
+        character.diary[entryIndex].content = newContent;
+        await db.chats.put(character); // 保存到数据库
+        renderDiaryList();
+        modal.classList.remove('visible');
+        alert('日记已更新');
+    }
+}
+
+/**
+ * 删除一条日记
+ * @param {string} diaryId - 要删除的日记的ID
+ */
+async function deleteDiaryEntry(diaryId) {
+    const confirmed = await showCustomConfirm(
+        '删除日记',
+        '真的要撕掉这一页日记吗？',
+        { confirmButtonClass: 'btn-danger' }
+    );
+    if (confirmed) {
+        const character = state.chats[currentDiaryCharacterId];
+        character.diary = character.diary.filter(d => d.id !== diaryId);
+        await db.chats.put(character); // 保存到数据库
+        renderDiaryList();
+        alert('一页回忆随风去啦...');
+    }
+}
+
+// ▲▲▲ 功能代码粘贴结束 ▲▲▲
         init();
     });
 </script>
