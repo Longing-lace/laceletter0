@@ -4312,10 +4312,10 @@ input:checked + .slider:before {
 /* === 日记卡片样式 === */
 
 /* ▼▼▼ 在这里粘贴新按钮的CSS ▼▼▼ */
-/* === 心声弹窗里的日记快捷按钮 === */
+/* 修改：将日记本按钮移动到右上角 */
 .diary-shortcut-btn {
     position: absolute;
-    bottom: 80px;
+    top: 15px;      /* <--- 就是这里，从 bottom 改为了 top */
     right: 15px;
     background: none;
     border: none;
@@ -4323,6 +4323,7 @@ input:checked + .slider:before {
     color: var(--text-secondary);
     opacity: 0.6;
     transition: opacity 0.2s;
+    padding: 0;
 }
 .diary-shortcut-btn:hover {
     opacity: 1;
@@ -4377,6 +4378,229 @@ input:checked + .slider:before {
 /* ▲▲▲ 粘贴结束 ▲▲▲ */
 
 /* ▲▲▲ CSS样式粘贴结束 ▲▲▲ */
+/* ▼▼▼ 把这一整块全新的CSS，粘贴到 <style> 标签的末尾 ▼▼▼ */
+
+/* === 【全新】群聊心声弹窗样式 === */
+#group-status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* 每个成员之间的间距 */
+}
+
+.group-status-item {
+    display: flex;
+    align-items: flex-start; /* 头像和文字顶部对齐 */
+    gap: 12px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+#group-status-list .group-status-item:last-child {
+    border-bottom: none; /* 最后一个不显示下边框 */
+}
+#phone-screen.dark-mode .group-status-item {
+    border-bottom-color: #38383a;
+}
+
+.group-status-item .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0; /* 防止头像被压缩 */
+}
+
+.group-status-item .content-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-status-item .name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.group-status-item .thought {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    white-space: pre-wrap; /* 保留换行符 */
+    margin: 0; /* 移除 p 标签的默认边距 */
+}
+
+/* ▲▲▲ 新CSS粘贴结束 ▲▲▲ */
+/* 新增：为日记本图标设置尺寸 */
+#diary-shortcut-icon {
+    width: 35px;
+    height: 35px;
+    display: block; /* 确保图片正确显示 */
+}
+/* ▼▼▼ 【全新】论坛功能样式 ▼▼▼ */
+
+#forum-screen {
+    background-color: #f0f2f5;
+}
+#phone-screen.dark-mode #forum-screen {
+    background-color: #000000;
+}
+
+#forum-posts-container {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.forum-placeholder {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 80px 20px;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.forum-post-item {
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+#phone-screen.dark-mode .forum-post-item {
+    background-color: #1c1c1e;
+    border: 1px solid #333;
+}
+
+.forum-post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.forum-post-header .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.forum-post-header .name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-primary);
+}
+
+.forum-post-content {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-bottom: 15px;
+}
+#phone-screen.dark-mode .forum-post-content {
+    color: #f0f0f0;
+}
+
+.forum-post-footer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+#phone-screen.dark-mode .forum-post-footer {
+    border-top-color: #38383a;
+}
+.footer-action {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.footer-action svg {
+    width: 18px;
+    height: 18px;
+}
+.footer-action.liked {
+    color: #ff5252;
+}
+.footer-action.liked svg {
+    fill: #ff5252;
+}
+
+.forum-comments-section {
+    margin-top: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+}
+#phone-screen.dark-mode .forum-comments-section {
+    background-color: #2c2c2e;
+}
+
+.forum-comment-item {
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px solid #e9e9e9;
+}
+#phone-screen.dark-mode .forum-comment-item {
+    border-bottom-color: #38383a;
+}
+.forum-comment-item:last-child {
+    border-bottom: none;
+}
+.forum-comment-item .commenter-name {
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-right: 5px;
+}
+.forum-comment-item .comment-text {
+    color: var(--text-primary);
+}
+
+.forum-comment-input-area {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+.forum-comment-input-area input {
+    flex-grow: 1;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 8px 12px;
+    font-size: 13px;
+    background-color: var(--secondary-bg);
+}
+#phone-screen.dark-mode .forum-comment-input-area input {
+    background-color: #3a3a3c;
+    border-color: #545458;
+    color: #ffffff;
+}
+.forum-comment-input-area button {
+    border: none;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 15px;
+    padding: 0 15px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#forum-character-selector label {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+#forum-character-selector label:hover {
+    background-color: #f0f0f0;
+}
+#forum-character-selector input {
+    margin-right: 10px;
+}
+/* ▲▲▲ 新CSS粘贴结束 ▲▲▲ */
     </style>
 </head>
 <body>
@@ -4389,6 +4613,15 @@ input:checked + .slider:before {
                                                 <!-- ▼▼▼ 用这整块代码替换你原来的 id="app-grid" ▼▼▼ -->
 <div id="app-grid">
     <!-- 第一行：放2个图标 -->
+     <div class="app-row">
+        <div class="app-icon" onclick="showScreen('forum-screen')">
+            <div class="icon-bg">
+                <img id="icon-img-forum" src="https://i.postimg.cc/W3y7GZ1W/IMG-6443.jpg" alt="论坛">
+            </div>
+            <span class="label">论坛</span>
+        </div>
+    </div>
+</div>
     <div class="app-row">
         <div class="app-icon" onclick="showScreen('world-book-screen')">
             <div class="icon-bg">
@@ -4405,6 +4638,7 @@ input:checked + .slider:before {
             <span class="label">QQ</span>
         </div>
     </div>
+    
     <!-- 第二行：放3个图标 -->
     <div class="app-row">
         <div class="app-icon" onclick="showScreen('api-settings-screen')">
@@ -4936,6 +5170,26 @@ input:checked + .slider:before {
         <button class="form-button form-button-secondary" id="reset-font-btn">恢复默认字体</button>
     </div>
 </div>
+<!-- ▼▼▼ 【全新】论坛页面 ▼▼▼ -->
+<div id="forum-screen" class="screen">
+    <div class="header">
+        <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
+        <span>论坛</span>
+        <div class="header-actions">
+            <span class="action-btn" id="forum-refresh-btn" title="刷新论坛内容">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            </span>
+        </div>
+    </div>
+    <div id="forum-posts-container" class="list-container">
+        <!-- 论坛帖子将由JS动态生成在这里 -->
+        <div class="forum-placeholder">
+            <p>点击右上角的刷新按钮 🔄</p>
+            <p>根据你和角色的故事生成专属论坛吧！</p>
+        </div>
+    </div>
+</div>
+<!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
 
 <!-- ▼▼▼ 【全新】选择联系人以创建群聊的屏幕 ▼▼▼ -->
 <div id="contact-picker-screen" class="screen">
@@ -5022,20 +5276,27 @@ input:checked + .slider:before {
             <span id="status-modal-title">TA的状态</span>
         </div>
         <div class="modal-body" style="text-align: left;">
-            
+
             <div>
-                
+
                 <p id="status-modal-thought" style="font-size: 16px; line-height: 1.6;">...</p>
             </div>
         </div>
         <button id="open-diary-from-status-btn" class="diary-shortcut-btn" title="打开日记本">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M8,12H16V14H8V12M8,16H13V18H8V16Z" />
-    </svg>
+    <img src="https://files.catbox.moe/g2x30e.png" alt="日记本" id="diary-shortcut-icon">
 </button>
-        <div class="modal-footer">
-            <button class="save" onclick="document.getElementById('status-modal').classList.remove('visible')" style="width:100%;">关闭</button>
+        
+    </div>
+</div>
+
+<div id="group-status-modal" class="modal">
+    <div class="modal-content" style="width: 320px; height: 60%;">
+        <div class="modal-header">
+            <span id="group-status-modal-title">群聊心声</span>
         </div>
+        <div class="modal-body" id="group-status-list" style="padding: 15px;">
+            </div>
+        
     </div>
 </div>
 
@@ -5681,7 +5942,31 @@ input:checked + .slider:before {
     </div>
 </div>
 <!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
-
+<!-- ▼▼▼ 【全新】论坛生成设置模态框 ▼▼▼ -->
+<div id="forum-settings-modal" class="modal">
+    <div class="modal-content" style="height: 70%;">
+        <div class="modal-header">
+            <span>生成论坛八卦</span>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>选择参与八卦的角色 (可多选)</label>
+                <div id="forum-character-selector" style="max-height: 200px; overflow-y: auto; background: #f9f9f9; padding: 10px; border-radius: 8px;">
+                    <!-- 角色选项将由JS动态生成 -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="forum-history-count">读取最近聊天记录数量</label>
+                <input type="number" id="forum-history-count" value="30" min="10" max="100">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="cancel" id="cancel-forum-settings-btn">取消</button>
+            <button class="save" id="generate-forum-posts-btn">开始生成</button>
+        </div>
+    </div>
+</div>
+<!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
 <script>
 
         const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models'
@@ -5952,7 +6237,8 @@ const DEFAULT_APP_ICONS = {
     'qq': 'https://i.postimg.cc/MTC3Tkw8/IMG-6436.jpg',
     'api-settings': 'https://i.postimg.cc/MK8rJ8t7/IMG-6438.jpg',
     'wallpaper': 'https://i.postimg.cc/T1j03pQr/IMG-6440.jpg',
-    'font': 'https://i.postimg.cc/pXxk1JXk/IMG-6442.jpg'
+    'font': 'https://i.postimg.cc/pXxk1JXk/IMG-6442.jpg',
+    'forum': 'https://i.postimg.cc/W3y7GZ1W/IMG-6443.jpg'
 };
 // ▲▲▲ 添加结束 ▲▲▲
 
@@ -6080,6 +6366,206 @@ db.version(23).stores({
         // ===================================================================
         // 3. 所有功能函数定义
         // ===================================================================
+
+// ▼▼▼ 【全新】论坛功能核心函数 ▼▼▼
+
+/**
+ * 打开论坛生成设置的模态框
+ */
+function openForumSettingsModal() {
+    const selector = document.getElementById('forum-character-selector');
+    selector.innerHTML = '';
+
+    // 只选择单聊的角色作为论坛讨论对象
+    const characters = Object.values(state.chats).filter(chat => !chat.isGroup);
+
+    if (characters.length === 0) {
+        selector.innerHTML = '<p style="color: var(--text-secondary);">还没有可以讨论的角色哦~</p>';
+    } else {
+        characters.forEach(chat => {
+            const label = document.createElement('label');
+            label.innerHTML = `<input type="checkbox" name="forum-char" value="${chat.id}" checked> ${chat.name}`;
+            selector.appendChild(label);
+        });
+    }
+    document.getElementById('forum-settings-modal').classList.add('visible');
+}
+// ▼▼▼ 请用这个【修正后】的函数，完整替换你旧的 generateForumPosts 函数 ▼▼▼
+/**
+ * 核心功能：收集数据、构建Prompt、调用API并渲染结果
+ */
+async function generateForumPosts() {
+    const { proxyUrl, apiKey, model } = state.apiConfig;
+    if (!proxyUrl || !apiKey || !model) {
+        alert('请先在API设置中配置好API信息！');
+        return;
+    }
+
+    const selectedCharIds = Array.from(document.querySelectorAll('input[name="forum-char"]:checked')).map(cb => cb.value);
+    const historyCount = parseInt(document.getElementById('forum-history-count').value) || 30;
+
+    if (selectedCharIds.length === 0) {
+        alert('请至少选择一个角色参与八卦！');
+        return;
+    }
+
+    document.getElementById('forum-settings-modal').classList.remove('visible');
+    const container = document.getElementById('forum-posts-container');
+    container.innerHTML = `<div class="forum-placeholder"><p>正在连接赛博空间，获取最新八卦中...</p><div class="loading-spinner" style="display: block; margin: 20px auto; border-top-color: var(--accent-color);"></div></div>`;
+
+    // 1. 收集所有需要的数据
+    const userPersona = state.chats[selectedCharIds[0]]?.settings.myPersona || '一个普通用户';
+    const worldBookEntries = state.worldBooks.map(book => `### ${book.name}\n${book.content}`).join('\n\n');
+    
+    let contextData = `# 用户人设\n${userPersona}\n\n`;
+    if (worldBookEntries) {
+        contextData += `# 世界观设定\n${worldBookEntries}\n\n`;
+    }
+
+    contextData += `# 角色人设与近期聊天记录\n`;
+    selectedCharIds.forEach(id => {
+        const chat = state.chats[id];
+        if (chat) {
+            contextData += `## 角色: ${chat.name}\n- 人设: ${chat.settings.aiPersona}\n- 最近聊天摘要:\n`;
+            const history = chat.history.slice(-historyCount);
+            history.forEach(msg => {
+                const sender = msg.role === 'user' ? '用户' : chat.name;
+                
+                // 【【【核心修复就在这里】】】
+                // 我们在将内容放入Prompt之前，先处理掉可能导致错误的特殊字符
+                let content = String(msg.content || '')
+                    .substring(0, 100)
+                    .replace(/`/g, "'") // 将反引号替换为单引号
+                    .replace(/\${/g, '{'); // 处理掉 ${...} 结构，防止被误认为是模板字符串
+                
+                if (msg.type === 'sticker') content = '[表情]';
+                if (msg.type === 'ai_image') content = '[图片]';
+                
+                contextData += `  - ${sender}: ${content}\n`;
+            });
+            contextData += '\n';
+        }
+    });
+
+    // 2. 构建最终的Prompt
+    const systemPrompt = `你是一个论坛帖子生成器。你的任务是基于我提供的角色人设、世界观和聊天记录，创作10条关于这些角色和用户的论坛八卦帖子。
+
+# 核心要求:
+1.  **视角多样**: 帖子可以来自任何角色，也可以是路人、粉丝、匿名者等。
+2.  **内容丰富**: 帖子内容必须围绕角色和用户的关系、性格、最近发生的事件展开。可以是对某次对话的吐槽、对某个角色的爱慕、对他们关系的猜测等等。要显得真实、有趣、充满“瓜”的气息。
+3.  **互动模拟**: 每条帖子都需要包含一些评论，评论可以是角色之间的互相回复，也可以是用户或其他路人的评论。楼主（发帖人）也可以在评论区回复。
+4.  **格式铁律**: 你的回复【必须且只能】是一个严格的JSON数组。数组中包含10个帖子对象。每个对象必须遵循以下结构：
+    \`\`\`json
+    {
+      "posterName": "发帖人的ID",
+      "postContent": "帖子的正文内容，支持换行符\\n",
+      "likes": "一个随机的数字，代表点赞数",
+      "comments": [
+        {
+          "commenterName": "评论者1的ID",
+          "commentText": "评论内容1"
+        },
+        {
+          "commenterName": "评论者2的ID",
+          "commentText": "评论内容2"
+        }
+      ]
+    }
+    \`\`\`
+
+# 提供的上下文信息:
+${contextData}
+
+现在，请开始生成这10条论坛帖子。`;
+
+    // 3. 调用API
+    try {
+        let isGemini = proxyUrl === GEMINI_API_URL;
+        let geminiConfig = toGeminiRequestData(model, apiKey, systemPrompt, [], isGemini);
+
+        const response = isGemini 
+            ? await fetch(geminiConfig.url, geminiConfig.data)
+            : await fetch(`${proxyUrl}/v1/chat/completions`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+                body: JSON.stringify({ model, messages: [{role: 'user', content: systemPrompt}], temperature: 0.8 })
+            });
+
+        if (!response.ok) throw new Error(`API 请求失败: ${response.status}`);
+        
+        const data = await response.json();
+        const rawContent = isGemini ? data.candidates[0].content.parts[0].text : data.choices[0].message.content;
+        
+        // 净化并解析JSON
+        const jsonString = rawContent.replace(/^```json\s*/, '').replace(/```$/, '').trim();
+        const posts = JSON.parse(jsonString);
+
+        if (Array.isArray(posts)) {
+            renderForumPosts(posts);
+        } else {
+            throw new Error("API返回的不是一个有效的数组。");
+        }
+
+    } catch (error) {
+        console.error("生成论坛帖子失败:", error);
+        container.innerHTML = `<div class="forum-placeholder"><p>哎呀，生成失败了...</p><p style="font-size: 12px; color: #ff6b6b;">${error.message}</p></div>`;
+    }
+}
+// ▲▲▲ 替换结束 ▲▲▲
+/**
+ * 将从API获取的帖子数据渲染到页面上
+ * @param {Array} posts - 帖子对象数组
+ */
+function renderForumPosts(posts) {
+    const container = document.getElementById('forum-posts-container');
+    container.innerHTML = '';
+
+    posts.forEach(post => {
+        const postEl = document.createElement('div');
+        postEl.className = 'forum-post-item';
+
+        // 查找发帖人头像
+        const allCharsAndUser = [...Object.values(state.chats), {name: state.qzoneSettings.nickname, settings: {myAvatar: state.qzoneSettings.avatar}}];
+        const poster = allCharsAndUser.find(c => c.name === post.posterName);
+        const posterAvatar = poster ? (poster.settings.aiAvatar || poster.settings.myAvatar) : defaultAvatar;
+
+        let commentsHtml = '';
+        if (post.comments && post.comments.length > 0) {
+            commentsHtml = post.comments.map(comment => `
+                <div class="forum-comment-item">
+                    <span class="commenter-name">${comment.commenterName}:</span>
+                    <span class="comment-text">${comment.commentText.replace(/\n/g, '<br>')}</span>
+                </div>
+            `).join('');
+        }
+
+        postEl.innerHTML = `
+            <div class="forum-post-header">
+                <img src="${posterAvatar}" class="avatar">
+                <span class="name">${post.posterName}</span>
+            </div>
+            <div class="forum-post-content">${post.postContent.replace(/\n/g, '<br>')}</div>
+            <div class="forum-post-footer">
+                <div class="footer-action like-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                    <span class="like-count">${post.likes}</span>
+                </div>
+                <div class="footer-action">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <span>${post.comments?.length || 0}</span>
+                </div>
+            </div>
+            <div class="forum-comments-section">${commentsHtml}</div>
+            <div class="forum-comment-input-area">
+                <input type="text" placeholder="发表你的看法...">
+                <button>发送</button>
+            </div>
+        `;
+        container.appendChild(postEl);
+    });
+}
+
+// ▲▲▲ 论坛功能函数粘贴结束 ▲▲▲
 
 /**
  * 【@功能修正版】当用户评论AI的动态后，立即触发AI进行回复
@@ -7872,6 +8358,14 @@ const loadMoreBtn = document.getElementById('load-more-btn'); if (loadMoreBtn) {
 
 // ▼▼▼ 用这个【带动画的版本】替换你原来的 appendMessage 函数 ▼▼▼
 function appendMessage(msg, chat, isInitialLoad = false) {
+// ▼▼▼ 在这里添加“警卫”代码 ▼▼▼
+// 这是一个安全检查，确保我们不会把B的消息错误地添加到A的聊天窗口里
+if (!isInitialLoad && state.activeChatId !== chat.id) {
+    // 如果当前打开的聊天窗口（state.activeChatId）不是这条消息所属的聊天（chat.id），
+    // 就直接退出，不去渲染它。
+    return;
+}
+// ▲▲▲ 添加结束 ▲▲▲
     const messagesContainer = document.getElementById('chat-messages');
     const messageEl = createMessageElement(msg, chat);
 
@@ -7893,6 +8387,14 @@ function appendMessage(msg, chat, isInitialLoad = false) {
 // ▲▲▲ 替换结束 ▲▲▲
 
 async function openChat(chatId) {
+// ▼▼▼ 在这里添加最终极的防串台“门锁”代码 ▼▼▼
+// 这个检查确保：如果用户已经在某个聊天窗口里，任何来自后台的、试图打开另一个窗口的指令都会被阻止。
+const isAlreadyInAChat = document.getElementById('chat-interface-screen').classList.contains('active');
+if (isAlreadyInAChat && state.activeChatId !== chatId) {
+    console.warn(`BUG拦截成功：后台尝试在您查看 ${state.activeChatId} 时，自动打开 ${chatId} 的窗口。操作已被阻止。`);
+    return; // 如果要打开的不是当前窗口，就直接阻止函数继续执行
+}
+// ▲▲▲ “门锁”代码结束 ▲▲▲
     state.activeChatId = chatId;
     const chat = state.chats[chatId];
     if (!chat) return; // 安全检查
@@ -8167,6 +8669,8 @@ const membersList = chat.members.map(m => `- **${m.originalName}**: ${m.persona}
 # 核心规则
 1.  **【【【身份铁律】】】**: 用户的身份是【${myNickname}】。你【绝对、永远、在任何情况下都不能】生成 \`name\` 字段为 **"${myNickname}"** 或 **"${chat.name}"(群聊名称本身)** 的消息。你的唯一任务是扮演且仅能扮演下方“群成员列表”中明确列出的角色。任何不属于该列表的名字都不允许出现。
 2.  **【【【输出格式】】】**: 你的回复【必须】是一个JSON数组格式的字符串。数组中的【每一个元素都必须是一个带有 "type" 和 "name" 字段的JSON对象】。
+**规则铁律：你扮演的每个角色发送的每一轮文本消息都必须包含一次thought字段**
+**对话节奏**: 模拟真人的聊天习惯，你可以一次性生成多条短消息。你扮演的每个角色每次要回复至少3-5条消息！！！
 3.  **角色扮演**: 严格遵守下方“群成员列表及人设”中的每一个角色的设定。
 4.  **禁止出戏**: 绝不能透露你是AI、模型，或提及“扮演”、“生成”等词语。并且不能一直要求和用户见面，这是线上聊天，决不允许出现或者发展线下剧情！！
 5.  **情景感知**: 注意当前时间是 ${currentTime}。
@@ -8179,7 +8683,7 @@ const membersList = chat.members.map(m => `- **${m.originalName}**: ${m.persona}
     - 你也可以随时主动发起投票。
 
 ## 你可以使用的操作指令 (JSON数组中的元素):
--   **发送文本**: \`{"type": "text", "name": "角色名", "message": "文本内容"}\`
+-   **发送文本**: \`{"type": "text", "name": "角色名", "message": "文本内容", "thought": "在此写下该角色的内心独白"}\`**规则铁律：你扮演的每个角色发送的每一轮文本消息都必须包含一次thought字段**
 -   **【【【全新】】】发送后立刻撤回 (动画效果)**: \`{"type": "send_and_recall", "name": "角色名", "content": "你想让角色说出后立刻消失的话"}\`
 - **发送表情**: \`{"type": "sticker", "url": "https://...表情URL...", "meaning": "(可选)表情的含义"}\`
 -   **发送图片**: \`{"type": "ai_image", "name": "角色名", "description": "图片的详细文字描述"}\`
@@ -8273,6 +8777,7 @@ ${chat.settings.aiPersona}
 # 你的任务与规则：
 1. **【【【输出格式】】】**: 你的回复【必须】是一个JSON数组格式的字符串。数组中的【每一个元素都必须是一个带有type字段的JSON对象】。
 2. **对话节奏**: 模拟真人的聊天习惯，你可以一次性生成多条短消息。每次要回复至少3-8条消息！！！
+**规则铁律：你发送的每一轮文本消息都必须包含一次thought字段**
 并且不能一直要求和用户见面，这是线上聊天，决不允许出现或者发展为线下剧情！！
 4.  **情景感知**: 你需要感知当前的时间(${currentTime})、我们正在一起听的歌、以及你的人设和世界观。
     - **当我们在“一起听歌”时**，你会知道当前播放的歌曲和整个播放列表。你可以根据对话内容或氛围，【主动切换】到播放列表中的另一首歌。
@@ -8290,9 +8795,9 @@ ${chat.settings.aiAvatarLibrary && chat.settings.aiAvatarLibrary.length > 0
 +   **【全新】发送后立刻撤回 (动画效果)**: \`{"type": "send_and_recall", "content": "你想让AI说出后立刻消失的话"}\` (用于模拟说错话、后悔等场景，消息会短暂出现后自动变为“已撤回”)
 -   **【新增】更新状态**: \`{"type": "update_status", "status_text": "我去做什么了", "is_busy": false}\` (is_busy: true代表忙碌/离开, false代表空闲)
 -   **【新增】切换歌曲**: \`{"type": "change_music", "song_name": "你想切换到的歌曲名"}\` (歌曲名必须在下面的播放列表中)
--   **【新增】记录回忆**: \`{"type": "create_memory", "description": "用你自己的话，记录下这个让你印象深刻的瞬间。"}\`
+-   **写日记指令**: \`{"type": "create_diary", "content": "日记内容，不超过150字"}\`
 -   **【新增】创建约定/倒计时**: \`{"type": "create_countdown", "title": "约定的标题", "date": "YYYY-MM-DDTHH:mm:ss"}\` (必须是未来的时间)
-- **发送文本**: \`{"type": "text", "content": "你好呀！","thought": "在这里写下你此刻的内心独白"}\`。**你发送的每一轮文本消息都必须包含一次thought字段**。
+- **发送文本**: \`{"type": "text", "content": "你好呀！","thought": "在这里写下你此刻的内心独白"}\`。**规则铁律：你发送的每一轮文本消息都必须包含一次thought字段**
 - **发送表情**: \`{"type": "sticker", "url": "https://...表情URL...", "meaning": "(可选)表情的含义"}\`
 - **发送图片**: \`{"type": "ai_image", "description": "图片的详细文字描述..."}\`
 - **发送语音**: \`{"type": "voice_message", "content": "语音的文字内容..."}\`
@@ -8316,9 +8821,6 @@ ${chat.settings.aiAvatarLibrary && chat.settings.aiAvatarLibrary.length > 0
 -   **回应转账-拒绝/退款**: \`{"type": "decline_transfer", "for_timestamp": 1688888888888}\`
 - **【全新】引用回复**: \`{"type": "quote_reply", "target_timestamp": (你想引用的消息的时间戳), "reply_content": "你的回复内容"}\` (提示：每条历史消息的开头都提供了 \`(Timestamp: ...)\`，请使用它！)
 
-# 关于“记录回忆”的特别说明：
--   在对话中，如果发生了对你而言意义非凡的事件（比如用户向你表白、你们达成了某个约定、或者你度过了一个特别开心的时刻），你可以使用\`create_memory\`指令来“写日记”。
--   这个操作是【秘密】的，用户不会立刻看到你记录了什么。
 
 # 如何区分图片与表情:
 -   **图片 (ai_image)**: 指的是【模拟真实相机拍摄的照片】，比如风景、自拍、美食等。指令: \`{"type": "ai_image", "description": "图片的详细文字描述..."}\`
@@ -8337,7 +8839,7 @@ ${chat.settings.aiAvatarLibrary && chat.settings.aiAvatarLibrary.length > 0
     -   如果决定拒绝，你【必须】使用指令：\`{"type": "decline_transfer", "for_timestamp": (收到转账的那条消息的时间戳)}\`。这个指令会自动为你生成一个“退款”的转账卡片。
 4.  **【【【至关重要】】】**: 在使用上述任一指令后，你还【必须】紧接着发送一条或多条 \`text\` 消息，来对你的决定进行解释或表达感谢/歉意。
 // ▼▼▼ 在这里粘贴 ▼▼▼
-5.  **【重要】写日记**: 当对话中发生了让你觉得特别难忘、想要珍藏的时刻，你可以决定写一篇日记。日记必须是你内心真实的想法，且是你站在自己角色的第一人称视角写的。
+5.  **【重要】写日记**: 当对话中如果发生了对你而言意义非凡的事件（比如用户向你表白、你们达成了某个约定、或者你度过了一个特别开心的时刻），你可以决定写一篇日记。日记必须是你内心真实的想法，且是你站在自己角色的第一人称视角写的。
     -   **写日记指令**: \`{"type": "create_diary", "content": "日记内容，不超过150字"}\`
     -   **说明**: 这条指令本身不会显示为聊天消息，但会触发日记记录。请在角色有所感触、情绪激动、或觉得当前事件重要时才记录，大部分时间不需要写日记。
 // ▲▲▲ 粘贴结束 ▲▲▲
@@ -8759,19 +9261,7 @@ case 'qzone_post':
                         }
                     }
                     continue;
-                case 'create_memory':
-                    const newMemory = {
-                        chatId: chatId,
-                        authorName: chat.name,
-                        description: msgData.description,
-                        timestamp: Date.now(),
-                        type: 'ai_generated'
-                    };
-                    await db.memories.add(newMemory);
-
-                    console.log(`AI "${chat.name}" 记录了一条新回忆:`, msgData.description);
-                    
-                    continue; 
+                 
 
         case 'create_countdown':
             const targetDate = new Date(msgData.date);
@@ -9128,16 +9618,26 @@ case 'send_and_recall': {
 }
 // ▲▲▲ 新 case 添加结束 ▲▲▲
                 
-                case 'text':
-                    // ▼▼▼ 用下面这段代码替换旧的 case 'text' ▼▼▼
+           // ▼▼▼ 请用下面这【一整块】代码，完整替换掉旧的 case 'text' 代码块 ▼▼▼
 case 'text':
     // 检查AI的这条消息里是否附带了内心独白
-    if (msgData.thought && chat.displayStatus) {
-        // 如果有，就更新角色的心声数据
+    if (msgData.thought && chat.isGroup && msgData.name) {
+        // 如果是群聊，就找到对应的成员并更新他的心声
+        const member = chat.members.find(m => m.originalName === msgData.name);
+        if (member) {
+            // 【关键修正】确保成员对象上有 displayStatus 属性
+            if (!member.displayStatus) {
+                member.displayStatus = {};
+            }
+            member.displayStatus.innerThought = msgData.thought;
+        }
+    } else if (msgData.thought && !chat.isGroup) {
+        // 单聊的逻辑保持不变
         chat.displayStatus.innerThought = msgData.thought;
         chat.thoughtHistory.push({ text: msgData.thought, timestamp: Date.now() });
     }
-    // 创建要显示在聊天界面的消息（只显示content部分）
+
+    // 创建要显示在聊天界面的消息（只显示content/message部分）
     aiMessage = { ...baseMessage, content: String(msgData.content || msgData.message) };
     break;
 // ▲▲▲ 替换结束 ▲▲▲
@@ -9254,14 +9754,21 @@ case 'text':
                 typingIndicator.style.display = 'none';
             }
         } else {
-            if (chatHeaderTitle && state.chats[chatId]) {
-                chatHeaderTitle.style.opacity = 0;
-                setTimeout(() => {
-                    chatHeaderTitle.textContent = state.chats[chatId].name;
-                    chatHeaderTitle.classList.remove('typing-status');
-                    chatHeaderTitle.style.opacity = 1;
-                }, 200);
-            }
+          // ▼▼▼ 请用下面这段【全新】的代码，替换掉旧的 if (chatHeaderTitle...) 代码块 ▼▼▼
+if (chatHeaderTitle && state.chats[chatId]) {
+    // 【核心修正】在更新标题前，检查当前打开的窗口是否还是当初那个窗口
+    if (state.activeChatId === chatId) {
+        chatHeaderTitle.style.opacity = 0;
+        setTimeout(() => {
+            chatHeaderTitle.textContent = state.chats[chatId].name;
+            chatHeaderTitle.classList.remove('typing-status');
+            chatHeaderTitle.style.opacity = 1;
+        }, 200);
+    } else {
+        console.log(`后台响应已完成，但用户已切换窗口，不更新标题。`);
+    }
+}
+// ▲▲▲ 替换结束 ▲▲▲
         }
         renderChatList();
     }
@@ -12421,6 +12928,10 @@ function applyAppIcons() {
 /**
  * 【全新】在外观设置页面渲染出所有App图标的设置项
  */
+// ▼▼▼ 用这个【新版本】替换旧的 renderIconSettings 函数 ▼▼▼
+/**
+ * 【全新】在外观设置页面渲染出所有App图标的设置项
+ */
 function renderIconSettings() {
     const grid = document.getElementById('icon-settings-grid');
     if (!grid) return;
@@ -12430,27 +12941,31 @@ function renderIconSettings() {
         'world-book': '世界书',
         'qq': 'QQ',
         'api-settings': 'API设置',
-        'wallpaper': '壁纸',
-        'font': '字体'
+        'wallpaper': '外观设置',
+        'font': '字体',
+        'forum': '论坛' // <-- 新增这一行
     };
 
     for (const iconId in state.globalSettings.appIcons) {
+        // 安全检查，如果某个图标在旧数据中不存在，就跳过
+        if (!appLabels[iconId]) continue; 
+
         const iconUrl = state.globalSettings.appIcons[iconId];
-        const labelText = appLabels[iconId] || '未知App';
+        const labelText = appLabels[iconId];
 
         const item = document.createElement('div');
         item.className = 'icon-setting-item';
-        // 【重要】我们用 data-icon-id 来标记这个设置项对应哪个图标
         item.dataset.iconId = iconId; 
 
         item.innerHTML = `
             <img class="icon-preview" src="${iconUrl}" alt="${labelText}">
+            <span style="font-size: 13px; color: var(--text-secondary);">${labelText}</span>
             <button class="change-icon-btn">更换</button>
         `;
         grid.appendChild(item);
     }
 }
-// ▲▲▲ 新函数粘贴结束 ▲▲▲
+// ▲▲▲ 替换结束 ▲▲▲
 
 // ▼▼▼ 用这块【最终确认版】的代码，替换旧的 openBrowser 和 closeBrowser 函数 ▼▼▼
 
@@ -13246,6 +13761,54 @@ function updateChatHeaderStatus() {
     statusContainer.classList.toggle('busy', chat.status?.isBusy || false);
 }
         async function init() {
+
+            // ▼▼▼ 在 init() 函数的事件监听器区域末尾添加 ▼▼▼
+
+// 【全新】论坛功能事件绑定
+document.getElementById('forum-refresh-btn').addEventListener('click', openForumSettingsModal);
+document.getElementById('cancel-forum-settings-btn').addEventListener('click', () => {
+    document.getElementById('forum-settings-modal').classList.remove('visible');
+});
+document.getElementById('generate-forum-posts-btn').addEventListener('click', generateForumPosts);
+
+// 使用事件委托处理所有论坛帖子的内部交互
+document.getElementById('forum-posts-container').addEventListener('click', (e) => {
+    const target = e.target;
+
+    // 处理点赞
+    if (target.closest('.like-btn')) {
+        const likeBtn = target.closest('.like-btn');
+        const countEl = likeBtn.querySelector('.like-count');
+        let count = parseInt(countEl.textContent);
+        if (likeBtn.classList.contains('liked')) {
+            likeBtn.classList.remove('liked');
+            count--;
+        } else {
+            likeBtn.classList.add('liked');
+            count++;
+        }
+        countEl.textContent = count;
+    }
+
+    // 处理发送评论
+    if (target.tagName === 'BUTTON' && target.previousElementSibling?.tagName === 'INPUT') {
+        const input = target.previousElementSibling;
+        const commentText = input.value.trim();
+        if (!commentText) return;
+
+        const commentsSection = target.closest('.forum-post-item').querySelector('.forum-comments-section');
+        const newComment = document.createElement('div');
+        newComment.className = 'forum-comment-item';
+        newComment.innerHTML = `
+            <span class="commenter-name">${state.qzoneSettings.nickname || '我'}:</span>
+            <span class="comment-text">${commentText}</span>
+        `;
+        commentsSection.appendChild(newComment);
+        input.value = '';
+    }
+});
+
+// ▲▲▲ 新代码粘贴结束 ▲▲▲
 
     // ▼▼▼ 在 init() 函数的【最开头】，粘贴下面这两行代码 ▼▼▼
     const savedTheme = localStorage.getItem('ephone-theme') || 'light'; // 默认为日间模式
@@ -15690,6 +16253,49 @@ document.getElementById('existing-categories-list').addEventListener('click', (e
         // 5. 启动！
             // ▼▼▼ 在这里粘贴 ▼▼▼
 setupStatusAndDiarySystem();
+/**
+ * 【全新】打开并填充群聊心声弹窗
+ */
+/**
+ /**
+ /**
+ * 【已修正】打开并填充群聊心声弹窗
+ */
+function openGroupStatusModal() {
+    const chat = state.chats[state.activeChatId];
+    if (!chat || !chat.isGroup) return;
+
+    const modal = document.getElementById('group-status-modal');
+    const titleEl = document.getElementById('group-status-modal-title');
+    const listEl = document.getElementById('group-status-list');
+
+    titleEl.textContent = `“${chat.name}”的心声`;
+    listEl.innerHTML = ''; // 清空旧内容
+
+    chat.members.forEach(member => {
+        // 【关键修正1】在函数内部直接检查并兼容旧数据，防止脚本出错
+        if (!member.displayStatus) {
+            member.displayStatus = { innerThought: '...' };
+        }
+
+        const item = document.createElement('div');
+        item.className = 'group-status-item';
+
+        // 【关键修正2】现在会正确地从 member 对象中获取心声
+        const thought = member.displayStatus.innerThought || '...';
+
+        item.innerHTML = `
+            <img src="${member.avatar}" class="avatar">
+            <div class="content-wrapper">
+                <span class="name">${member.groupNickname}</span>
+                <p class="thought">${thought}</p>
+            </div>
+        `;
+        listEl.appendChild(item);
+    });
+
+    modal.classList.add('visible');
+}
 // ▼▼▼ 在函数末尾粘贴这段新代码 ▼▼▼
 // 为心声弹窗里的日记按钮添加点击事件
 document.getElementById('open-diary-from-status-btn').addEventListener('click', () => {
@@ -15704,22 +16310,29 @@ document.getElementById('open-diary-from-status-btn').addEventListener('click', 
 
 let currentDiaryCharacterId = null; // 用于记录当前正在查看哪个角色的日记
 
+// ==========================================================
+// --- 日记与心声功能区 (最终正式版) ---
+// ==========================================================
+
 /**
  * 设置所有与日记和心声相关的事件监听
  */
 function setupStatusAndDiarySystem() {
-    // ▼▼▼ 用下面这段代码替换原来的爱心按钮功能 ▼▼▼
-// 爱心按钮：现在直接打开心声弹窗
-document.getElementById('show-status-diary-btn').addEventListener('click', () => {
-    if (!state.activeChatId || state.chats[state.activeChatId].isGroup) {
-        alert("此功能仅限单人聊天使用。");
-        return;
-    }
-    openStatusModal(); // 直接调用打开心声弹窗的函数
-});
-// ▲▲▲ 替换结束 ▲▲▲
+    // 爱心按钮：现在可以根据聊天类型，分别打开单聊或群聊心声
+    document.getElementById('show-status-diary-btn').addEventListener('click', () => {
+        if (!state.activeChatId) {
+            return;
+        }
+        const chat = state.chats[state.activeChatId];
 
-    // 功能选择菜单的按钮
+        if (chat.isGroup) {
+            openGroupStatusModal();
+        } else {
+            openStatusModal();
+        }
+    });
+
+    // 功能选择菜单的按钮 (单聊时使用)
     document.getElementById('action-cancel-selection').addEventListener('click', () => {
         document.getElementById('status-diary-action-modal').classList.remove('visible');
     });
@@ -15736,7 +16349,7 @@ document.getElementById('show-status-diary-btn').addEventListener('click', () =>
     document.getElementById('diary-back-btn').addEventListener('click', () => {
         showScreen('chat-interface-screen');
     });
-    
+
     // 日记编辑模态框的按钮
     document.getElementById('cancel-diary-edit-btn').addEventListener('click', () => {
         document.getElementById('edit-diary-modal').classList.remove('visible');
@@ -15762,22 +16375,75 @@ document.getElementById('show-status-diary-btn').addEventListener('click', () =>
         const count = diaryTextInput.value.length;
         diaryCharCounter.textContent = `${count} / 150`;
     });
+
+    // 为心声弹窗里的日记按钮添加点击事件
+    document.getElementById('open-diary-from-status-btn').addEventListener('click', () => {
+        document.getElementById('status-modal').classList.remove('visible');
+        openDiaryScreen(state.activeChatId);
+    });
 }
 
 /**
- * 打开并填充“心声”弹窗
+ * 打开并填充“心声”弹窗 (单聊)
  */
 function openStatusModal() {
     const chat = state.chats[state.activeChatId];
     if (!chat) return;
-    document.getElementById('status-modal-title').textContent = `心声`;
-    document.getElementById('status-modal-thought').textContent = chat.displayStatus?.innerThought || '...';
+document.getElementById('status-modal-title').innerHTML = '<img src="https://files.catbox.moe/v9lljl.png" alt="心声" style="height: 40px;">';    document.getElementById('status-modal-thought').textContent = chat.displayStatus?.innerThought || '...';
     document.getElementById('status-modal').classList.add('visible');
 }
 
 /**
+ * 【最终正式版】打开并填充群聊心声弹窗
+ */
+function openGroupStatusModal() {
+    try {
+        const chat = state.chats[state.activeChatId];
+        if (!chat || !chat.isGroup) return;
+
+        const modal = document.getElementById('group-status-modal');
+        const titleEl = document.getElementById('group-status-modal-title');
+        const listEl = document.getElementById('group-status-list');
+
+titleEl.innerHTML = '<img src="https://files.catbox.moe/v9lljl.png" alt="心声" style="height: 40px;">';        listEl.innerHTML = ''; 
+
+        if (!chat.members || chat.members.length === 0) {
+             listEl.innerHTML = '<p>这个群还没有成员哦。</p>';
+        } else {
+            chat.members.forEach(member => {
+                if (!member) {
+                    console.error("发现一个空的成员对象，已跳过。");
+                    return;
+                }
+                if (!member.displayStatus) {
+                    member.displayStatus = { innerThought: '...' };
+                }
+                const item = document.createElement('div');
+                item.className = 'group-status-item';
+                const thought = member.displayStatus.innerThought || '...';
+
+                item.innerHTML = `
+                    <img src="${member.avatar || defaultGroupMemberAvatar}" class="avatar">
+                    <div class="content-wrapper">
+                        <span class="name">${member.groupNickname || member.originalName || '未知成员'}</span>
+                        <p class="thought">${thought}</p>
+                    </div>
+                `;
+                listEl.appendChild(item);
+            });
+        }
+
+        modal.classList.add('visible');
+
+    } catch (error) {
+        // 在正式版中，我们将错误信息打印到控制台，而不是用弹窗打扰用户
+        console.error("【严重错误】打开群聊心声弹窗时发生崩溃:", error);
+    }
+}
+
+
+/**
  * 打开指定角色的日记本界面
- * @param {string} characterId - 角色的ID
  */
 function openDiaryScreen(characterId) {
     currentDiaryCharacterId = characterId;
@@ -15795,19 +16461,17 @@ function renderDiaryList() {
     const character = state.chats[currentDiaryCharacterId];
     const container = document.getElementById('diary-list');
     container.innerHTML = '';
-    
+
     if (!character || !character.diary || character.diary.length === 0) {
         container.innerHTML = '<p style="text-align:center; color: var(--text-secondary); margin-top: 50px;">日记本还是空的呢...</p>';
         return;
     }
 
-    // 日记倒序显示，最新的在最上面
     [...character.diary].reverse().forEach(entry => {
         const card = document.createElement('div');
         card.className = 'diary-card';
         const date = new Date(entry.timestamp);
-        const dateString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-        
+        const dateString = `${date.getFullYear()}年${String(date.getMonth() + 1).padStart(2, '0')}月${String(date.getDate()).padStart(2, '0')}日 ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;        
         card.innerHTML = `
             <div class="card-header">
                 <span class="date">${dateString}</span>
@@ -15824,7 +16488,6 @@ function renderDiaryList() {
 
 /**
  * 打开日记编辑弹窗
- * @param {string} diaryId - 要编辑的日记的ID
  */
 function openDiaryEditModal(diaryId) {
     const character = state.chats[currentDiaryCharacterId];
@@ -15832,7 +16495,7 @@ function openDiaryEditModal(diaryId) {
     if (!entry) return;
 
     const modal = document.getElementById('edit-diary-modal');
-    modal.dataset.editingId = entry.id; // 将ID存在modal上
+    modal.dataset.editingId = entry.id;
     const textInput = document.getElementById('diary-text-input');
     textInput.value = entry.content;
     document.getElementById('diary-char-counter').textContent = `${entry.content.length} / 150`;
@@ -15866,7 +16529,6 @@ async function saveDiaryEdit() {
 
 /**
  * 删除一条日记
- * @param {string} diaryId - 要删除的日记的ID
  */
 async function deleteDiaryEntry(diaryId) {
     const confirmed = await showCustomConfirm(
@@ -15882,8 +16544,26 @@ async function deleteDiaryEntry(diaryId) {
         alert('一页回忆随风去啦...');
     }
 }
+// ▼▼▼ 在 init() 的事件监听器区域末尾添加 ▼▼▼
+// ▼▼▼ 用下面这段新代码，替换掉旧的 close-group-status-modal-btn 事件 ▼▼▼
 
-// ▲▲▲ 功能代码粘贴结束 ▲▲▲
+// 【全新功能】点击心声弹窗的灰色蒙层区域，关闭弹窗
+document.getElementById('status-modal').addEventListener('click', (e) => {
+    // 检查点击的是否是蒙层本身（而不是里面的内容）
+    if (e.target.id === 'status-modal') {
+        e.target.classList.remove('visible');
+    }
+});
+
+document.getElementById('group-status-modal').addEventListener('click', (e) => {
+    // 同样检查点击的是否是蒙层本身
+    if (e.target.id === 'group-status-modal') {
+        e.target.classList.remove('visible');
+    }
+});
+
+// ▲▲▲ 替换结束 ▲▲▲
+// ▲▲▲ 添加结束 ▲▲▲
         init();
     });
 </script>
