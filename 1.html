@@ -4436,171 +4436,6 @@ input:checked + .slider:before {
     height: 35px;
     display: block; /* 确保图片正确显示 */
 }
-/* ▼▼▼ 【全新】论坛功能样式 ▼▼▼ */
-
-#forum-screen {
-    background-color: #f0f2f5;
-}
-#phone-screen.dark-mode #forum-screen {
-    background-color: #000000;
-}
-
-#forum-posts-container {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.forum-placeholder {
-    text-align: center;
-    color: var(--text-secondary);
-    padding: 80px 20px;
-    font-size: 15px;
-    line-height: 1.8;
-}
-
-.forum-post-item {
-    background-color: var(--secondary-bg);
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-}
-#phone-screen.dark-mode .forum-post-item {
-    background-color: #1c1c1e;
-    border: 1px solid #333;
-}
-
-.forum-post-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-.forum-post-header .avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.forum-post-header .name {
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--text-primary);
-}
-
-.forum-post-content {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333;
-    white-space: pre-wrap;
-    word-break: break-word;
-    margin-bottom: 15px;
-}
-#phone-screen.dark-mode .forum-post-content {
-    color: #f0f0f0;
-}
-
-.forum-post-footer {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 13px;
-    color: var(--text-secondary);
-    padding-top: 10px;
-    border-top: 1px solid var(--border-color);
-}
-#phone-screen.dark-mode .forum-post-footer {
-    border-top-color: #38383a;
-}
-.footer-action {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-}
-.footer-action svg {
-    width: 18px;
-    height: 18px;
-}
-.footer-action.liked {
-    color: #ff5252;
-}
-.footer-action.liked svg {
-    fill: #ff5252;
-}
-
-.forum-comments-section {
-    margin-top: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 10px;
-}
-#phone-screen.dark-mode .forum-comments-section {
-    background-color: #2c2c2e;
-}
-
-.forum-comment-item {
-    font-size: 13px;
-    line-height: 1.5;
-    padding: 8px 0;
-    border-bottom: 1px solid #e9e9e9;
-}
-#phone-screen.dark-mode .forum-comment-item {
-    border-bottom-color: #38383a;
-}
-.forum-comment-item:last-child {
-    border-bottom: none;
-}
-.forum-comment-item .commenter-name {
-    font-weight: 600;
-    color: var(--accent-color);
-    margin-right: 5px;
-}
-.forum-comment-item .comment-text {
-    color: var(--text-primary);
-}
-
-.forum-comment-input-area {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-}
-.forum-comment-input-area input {
-    flex-grow: 1;
-    border: 1px solid var(--border-color);
-    border-radius: 15px;
-    padding: 8px 12px;
-    font-size: 13px;
-    background-color: var(--secondary-bg);
-}
-#phone-screen.dark-mode .forum-comment-input-area input {
-    background-color: #3a3a3c;
-    border-color: #545458;
-    color: #ffffff;
-}
-.forum-comment-input-area button {
-    border: none;
-    background-color: var(--accent-color);
-    color: white;
-    border-radius: 15px;
-    padding: 0 15px;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-#forum-character-selector label {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-}
-#forum-character-selector label:hover {
-    background-color: #f0f0f0;
-}
-#forum-character-selector input {
-    margin-right: 10px;
-}
-/* ▲▲▲ 新CSS粘贴结束 ▲▲▲ */
     </style>
 </head>
 <body>
@@ -4613,15 +4448,6 @@ input:checked + .slider:before {
                                                 <!-- ▼▼▼ 用这整块代码替换你原来的 id="app-grid" ▼▼▼ -->
 <div id="app-grid">
     <!-- 第一行：放2个图标 -->
-     <div class="app-row">
-        <div class="app-icon" onclick="showScreen('forum-screen')">
-            <div class="icon-bg">
-                <img id="icon-img-forum" src="https://i.postimg.cc/W3y7GZ1W/IMG-6443.jpg" alt="论坛">
-            </div>
-            <span class="label">论坛</span>
-        </div>
-    </div>
-</div>
     <div class="app-row">
         <div class="app-icon" onclick="showScreen('world-book-screen')">
             <div class="icon-bg">
@@ -4638,7 +4464,6 @@ input:checked + .slider:before {
             <span class="label">QQ</span>
         </div>
     </div>
-    
     <!-- 第二行：放3个图标 -->
     <div class="app-row">
         <div class="app-icon" onclick="showScreen('api-settings-screen')">
@@ -5170,26 +4995,6 @@ input:checked + .slider:before {
         <button class="form-button form-button-secondary" id="reset-font-btn">恢复默认字体</button>
     </div>
 </div>
-<!-- ▼▼▼ 【全新】论坛页面 ▼▼▼ -->
-<div id="forum-screen" class="screen">
-    <div class="header">
-        <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
-        <span>论坛</span>
-        <div class="header-actions">
-            <span class="action-btn" id="forum-refresh-btn" title="刷新论坛内容">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-            </span>
-        </div>
-    </div>
-    <div id="forum-posts-container" class="list-container">
-        <!-- 论坛帖子将由JS动态生成在这里 -->
-        <div class="forum-placeholder">
-            <p>点击右上角的刷新按钮 🔄</p>
-            <p>根据你和角色的故事生成专属论坛吧！</p>
-        </div>
-    </div>
-</div>
-<!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
 
 <!-- ▼▼▼ 【全新】选择联系人以创建群聊的屏幕 ▼▼▼ -->
 <div id="contact-picker-screen" class="screen">
@@ -5942,31 +5747,7 @@ input:checked + .slider:before {
     </div>
 </div>
 <!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
-<!-- ▼▼▼ 【全新】论坛生成设置模态框 ▼▼▼ -->
-<div id="forum-settings-modal" class="modal">
-    <div class="modal-content" style="height: 70%;">
-        <div class="modal-header">
-            <span>生成论坛八卦</span>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label>选择参与八卦的角色 (可多选)</label>
-                <div id="forum-character-selector" style="max-height: 200px; overflow-y: auto; background: #f9f9f9; padding: 10px; border-radius: 8px;">
-                    <!-- 角色选项将由JS动态生成 -->
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="forum-history-count">读取最近聊天记录数量</label>
-                <input type="number" id="forum-history-count" value="30" min="10" max="100">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="cancel" id="cancel-forum-settings-btn">取消</button>
-            <button class="save" id="generate-forum-posts-btn">开始生成</button>
-        </div>
-    </div>
-</div>
-<!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
+
 <script>
 
         const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models'
@@ -6237,8 +6018,7 @@ const DEFAULT_APP_ICONS = {
     'qq': 'https://i.postimg.cc/MTC3Tkw8/IMG-6436.jpg',
     'api-settings': 'https://i.postimg.cc/MK8rJ8t7/IMG-6438.jpg',
     'wallpaper': 'https://i.postimg.cc/T1j03pQr/IMG-6440.jpg',
-    'font': 'https://i.postimg.cc/pXxk1JXk/IMG-6442.jpg',
-    'forum': 'https://i.postimg.cc/W3y7GZ1W/IMG-6443.jpg'
+    'font': 'https://i.postimg.cc/pXxk1JXk/IMG-6442.jpg'
 };
 // ▲▲▲ 添加结束 ▲▲▲
 
@@ -6366,206 +6146,6 @@ db.version(23).stores({
         // ===================================================================
         // 3. 所有功能函数定义
         // ===================================================================
-
-// ▼▼▼ 【全新】论坛功能核心函数 ▼▼▼
-
-/**
- * 打开论坛生成设置的模态框
- */
-function openForumSettingsModal() {
-    const selector = document.getElementById('forum-character-selector');
-    selector.innerHTML = '';
-
-    // 只选择单聊的角色作为论坛讨论对象
-    const characters = Object.values(state.chats).filter(chat => !chat.isGroup);
-
-    if (characters.length === 0) {
-        selector.innerHTML = '<p style="color: var(--text-secondary);">还没有可以讨论的角色哦~</p>';
-    } else {
-        characters.forEach(chat => {
-            const label = document.createElement('label');
-            label.innerHTML = `<input type="checkbox" name="forum-char" value="${chat.id}" checked> ${chat.name}`;
-            selector.appendChild(label);
-        });
-    }
-    document.getElementById('forum-settings-modal').classList.add('visible');
-}
-// ▼▼▼ 请用这个【修正后】的函数，完整替换你旧的 generateForumPosts 函数 ▼▼▼
-/**
- * 核心功能：收集数据、构建Prompt、调用API并渲染结果
- */
-async function generateForumPosts() {
-    const { proxyUrl, apiKey, model } = state.apiConfig;
-    if (!proxyUrl || !apiKey || !model) {
-        alert('请先在API设置中配置好API信息！');
-        return;
-    }
-
-    const selectedCharIds = Array.from(document.querySelectorAll('input[name="forum-char"]:checked')).map(cb => cb.value);
-    const historyCount = parseInt(document.getElementById('forum-history-count').value) || 30;
-
-    if (selectedCharIds.length === 0) {
-        alert('请至少选择一个角色参与八卦！');
-        return;
-    }
-
-    document.getElementById('forum-settings-modal').classList.remove('visible');
-    const container = document.getElementById('forum-posts-container');
-    container.innerHTML = `<div class="forum-placeholder"><p>正在连接赛博空间，获取最新八卦中...</p><div class="loading-spinner" style="display: block; margin: 20px auto; border-top-color: var(--accent-color);"></div></div>`;
-
-    // 1. 收集所有需要的数据
-    const userPersona = state.chats[selectedCharIds[0]]?.settings.myPersona || '一个普通用户';
-    const worldBookEntries = state.worldBooks.map(book => `### ${book.name}\n${book.content}`).join('\n\n');
-    
-    let contextData = `# 用户人设\n${userPersona}\n\n`;
-    if (worldBookEntries) {
-        contextData += `# 世界观设定\n${worldBookEntries}\n\n`;
-    }
-
-    contextData += `# 角色人设与近期聊天记录\n`;
-    selectedCharIds.forEach(id => {
-        const chat = state.chats[id];
-        if (chat) {
-            contextData += `## 角色: ${chat.name}\n- 人设: ${chat.settings.aiPersona}\n- 最近聊天摘要:\n`;
-            const history = chat.history.slice(-historyCount);
-            history.forEach(msg => {
-                const sender = msg.role === 'user' ? '用户' : chat.name;
-                
-                // 【【【核心修复就在这里】】】
-                // 我们在将内容放入Prompt之前，先处理掉可能导致错误的特殊字符
-                let content = String(msg.content || '')
-                    .substring(0, 100)
-                    .replace(/`/g, "'") // 将反引号替换为单引号
-                    .replace(/\${/g, '{'); // 处理掉 ${...} 结构，防止被误认为是模板字符串
-                
-                if (msg.type === 'sticker') content = '[表情]';
-                if (msg.type === 'ai_image') content = '[图片]';
-                
-                contextData += `  - ${sender}: ${content}\n`;
-            });
-            contextData += '\n';
-        }
-    });
-
-    // 2. 构建最终的Prompt
-    const systemPrompt = `你是一个论坛帖子生成器。你的任务是基于我提供的角色人设、世界观和聊天记录，创作10条关于这些角色和用户的论坛八卦帖子。
-
-# 核心要求:
-1.  **视角多样**: 帖子可以来自任何角色，也可以是路人、粉丝、匿名者等。
-2.  **内容丰富**: 帖子内容必须围绕角色和用户的关系、性格、最近发生的事件展开。可以是对某次对话的吐槽、对某个角色的爱慕、对他们关系的猜测等等。要显得真实、有趣、充满“瓜”的气息。
-3.  **互动模拟**: 每条帖子都需要包含一些评论，评论可以是角色之间的互相回复，也可以是用户或其他路人的评论。楼主（发帖人）也可以在评论区回复。
-4.  **格式铁律**: 你的回复【必须且只能】是一个严格的JSON数组。数组中包含10个帖子对象。每个对象必须遵循以下结构：
-    \`\`\`json
-    {
-      "posterName": "发帖人的ID",
-      "postContent": "帖子的正文内容，支持换行符\\n",
-      "likes": "一个随机的数字，代表点赞数",
-      "comments": [
-        {
-          "commenterName": "评论者1的ID",
-          "commentText": "评论内容1"
-        },
-        {
-          "commenterName": "评论者2的ID",
-          "commentText": "评论内容2"
-        }
-      ]
-    }
-    \`\`\`
-
-# 提供的上下文信息:
-${contextData}
-
-现在，请开始生成这10条论坛帖子。`;
-
-    // 3. 调用API
-    try {
-        let isGemini = proxyUrl === GEMINI_API_URL;
-        let geminiConfig = toGeminiRequestData(model, apiKey, systemPrompt, [], isGemini);
-
-        const response = isGemini 
-            ? await fetch(geminiConfig.url, geminiConfig.data)
-            : await fetch(`${proxyUrl}/v1/chat/completions`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
-                body: JSON.stringify({ model, messages: [{role: 'user', content: systemPrompt}], temperature: 0.8 })
-            });
-
-        if (!response.ok) throw new Error(`API 请求失败: ${response.status}`);
-        
-        const data = await response.json();
-        const rawContent = isGemini ? data.candidates[0].content.parts[0].text : data.choices[0].message.content;
-        
-        // 净化并解析JSON
-        const jsonString = rawContent.replace(/^```json\s*/, '').replace(/```$/, '').trim();
-        const posts = JSON.parse(jsonString);
-
-        if (Array.isArray(posts)) {
-            renderForumPosts(posts);
-        } else {
-            throw new Error("API返回的不是一个有效的数组。");
-        }
-
-    } catch (error) {
-        console.error("生成论坛帖子失败:", error);
-        container.innerHTML = `<div class="forum-placeholder"><p>哎呀，生成失败了...</p><p style="font-size: 12px; color: #ff6b6b;">${error.message}</p></div>`;
-    }
-}
-// ▲▲▲ 替换结束 ▲▲▲
-/**
- * 将从API获取的帖子数据渲染到页面上
- * @param {Array} posts - 帖子对象数组
- */
-function renderForumPosts(posts) {
-    const container = document.getElementById('forum-posts-container');
-    container.innerHTML = '';
-
-    posts.forEach(post => {
-        const postEl = document.createElement('div');
-        postEl.className = 'forum-post-item';
-
-        // 查找发帖人头像
-        const allCharsAndUser = [...Object.values(state.chats), {name: state.qzoneSettings.nickname, settings: {myAvatar: state.qzoneSettings.avatar}}];
-        const poster = allCharsAndUser.find(c => c.name === post.posterName);
-        const posterAvatar = poster ? (poster.settings.aiAvatar || poster.settings.myAvatar) : defaultAvatar;
-
-        let commentsHtml = '';
-        if (post.comments && post.comments.length > 0) {
-            commentsHtml = post.comments.map(comment => `
-                <div class="forum-comment-item">
-                    <span class="commenter-name">${comment.commenterName}:</span>
-                    <span class="comment-text">${comment.commentText.replace(/\n/g, '<br>')}</span>
-                </div>
-            `).join('');
-        }
-
-        postEl.innerHTML = `
-            <div class="forum-post-header">
-                <img src="${posterAvatar}" class="avatar">
-                <span class="name">${post.posterName}</span>
-            </div>
-            <div class="forum-post-content">${post.postContent.replace(/\n/g, '<br>')}</div>
-            <div class="forum-post-footer">
-                <div class="footer-action like-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
-                    <span class="like-count">${post.likes}</span>
-                </div>
-                <div class="footer-action">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                    <span>${post.comments?.length || 0}</span>
-                </div>
-            </div>
-            <div class="forum-comments-section">${commentsHtml}</div>
-            <div class="forum-comment-input-area">
-                <input type="text" placeholder="发表你的看法...">
-                <button>发送</button>
-            </div>
-        `;
-        container.appendChild(postEl);
-    });
-}
-
-// ▲▲▲ 论坛功能函数粘贴结束 ▲▲▲
 
 /**
  * 【@功能修正版】当用户评论AI的动态后，立即触发AI进行回复
@@ -12928,10 +12508,6 @@ function applyAppIcons() {
 /**
  * 【全新】在外观设置页面渲染出所有App图标的设置项
  */
-// ▼▼▼ 用这个【新版本】替换旧的 renderIconSettings 函数 ▼▼▼
-/**
- * 【全新】在外观设置页面渲染出所有App图标的设置项
- */
 function renderIconSettings() {
     const grid = document.getElementById('icon-settings-grid');
     if (!grid) return;
@@ -12941,31 +12517,27 @@ function renderIconSettings() {
         'world-book': '世界书',
         'qq': 'QQ',
         'api-settings': 'API设置',
-        'wallpaper': '外观设置',
-        'font': '字体',
-        'forum': '论坛' // <-- 新增这一行
+        'wallpaper': '壁纸',
+        'font': '字体'
     };
 
     for (const iconId in state.globalSettings.appIcons) {
-        // 安全检查，如果某个图标在旧数据中不存在，就跳过
-        if (!appLabels[iconId]) continue; 
-
         const iconUrl = state.globalSettings.appIcons[iconId];
-        const labelText = appLabels[iconId];
+        const labelText = appLabels[iconId] || '未知App';
 
         const item = document.createElement('div');
         item.className = 'icon-setting-item';
+        // 【重要】我们用 data-icon-id 来标记这个设置项对应哪个图标
         item.dataset.iconId = iconId; 
 
         item.innerHTML = `
             <img class="icon-preview" src="${iconUrl}" alt="${labelText}">
-            <span style="font-size: 13px; color: var(--text-secondary);">${labelText}</span>
             <button class="change-icon-btn">更换</button>
         `;
         grid.appendChild(item);
     }
 }
-// ▲▲▲ 替换结束 ▲▲▲
+// ▲▲▲ 新函数粘贴结束 ▲▲▲
 
 // ▼▼▼ 用这块【最终确认版】的代码，替换旧的 openBrowser 和 closeBrowser 函数 ▼▼▼
 
@@ -13761,54 +13333,6 @@ function updateChatHeaderStatus() {
     statusContainer.classList.toggle('busy', chat.status?.isBusy || false);
 }
         async function init() {
-
-            // ▼▼▼ 在 init() 函数的事件监听器区域末尾添加 ▼▼▼
-
-// 【全新】论坛功能事件绑定
-document.getElementById('forum-refresh-btn').addEventListener('click', openForumSettingsModal);
-document.getElementById('cancel-forum-settings-btn').addEventListener('click', () => {
-    document.getElementById('forum-settings-modal').classList.remove('visible');
-});
-document.getElementById('generate-forum-posts-btn').addEventListener('click', generateForumPosts);
-
-// 使用事件委托处理所有论坛帖子的内部交互
-document.getElementById('forum-posts-container').addEventListener('click', (e) => {
-    const target = e.target;
-
-    // 处理点赞
-    if (target.closest('.like-btn')) {
-        const likeBtn = target.closest('.like-btn');
-        const countEl = likeBtn.querySelector('.like-count');
-        let count = parseInt(countEl.textContent);
-        if (likeBtn.classList.contains('liked')) {
-            likeBtn.classList.remove('liked');
-            count--;
-        } else {
-            likeBtn.classList.add('liked');
-            count++;
-        }
-        countEl.textContent = count;
-    }
-
-    // 处理发送评论
-    if (target.tagName === 'BUTTON' && target.previousElementSibling?.tagName === 'INPUT') {
-        const input = target.previousElementSibling;
-        const commentText = input.value.trim();
-        if (!commentText) return;
-
-        const commentsSection = target.closest('.forum-post-item').querySelector('.forum-comments-section');
-        const newComment = document.createElement('div');
-        newComment.className = 'forum-comment-item';
-        newComment.innerHTML = `
-            <span class="commenter-name">${state.qzoneSettings.nickname || '我'}:</span>
-            <span class="comment-text">${commentText}</span>
-        `;
-        commentsSection.appendChild(newComment);
-        input.value = '';
-    }
-});
-
-// ▲▲▲ 新代码粘贴结束 ▲▲▲
 
     // ▼▼▼ 在 init() 函数的【最开头】，粘贴下面这两行代码 ▼▼▼
     const savedTheme = localStorage.getItem('ephone-theme') || 'light'; // 默认为日间模式
